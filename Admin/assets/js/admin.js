@@ -6,12 +6,13 @@ const role = document.querySelector(".form-Role > .form-select");
 
 document.addEventListener("DOMContentLoaded", () => {
   getAllRoles();
-  userForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    AddUser();
-  });
+  
 });
 
+userForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  AddUser();
+});
 const getAllRoles = () => {
   const role = document.querySelector(".form-Role > .form-select");
 
@@ -31,13 +32,11 @@ const getAllRoles = () => {
     });
 };
 const AddUser = () => {
-  userForm.addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent form submission
     const userData = {
       firstName: userForm.firstName.value,
       lastName: userForm.lastName.value,
       email: userForm.email.value,
-      role: role.value,
+      roleId: role.value,
     };
 
     fetch(addUserApi, {
@@ -55,5 +54,4 @@ const AddUser = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-  });
 };
