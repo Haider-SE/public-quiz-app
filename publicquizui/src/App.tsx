@@ -20,6 +20,12 @@ const arrayOfApps = [
     primary: "Dashboard",
   },
   {
+    path: "/",
+    element: <MainPage />,
+    icon: <DashboardIcon />,
+    primary: "Dashboard",
+  },
+  {
     path: "/users",
     element: <Users />,
     icon: <AssignmentIcon />,
