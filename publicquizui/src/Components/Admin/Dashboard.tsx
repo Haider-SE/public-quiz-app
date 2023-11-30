@@ -9,7 +9,7 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";  
+import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
@@ -19,7 +19,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PersonIcon from "@mui/icons-material/Person";
+import { useNavigate } from "react-router";
 import { isTemplateSpan } from "typescript";
+import { BackdropProps } from "@mui/material";
 function Copyright(props: any) {
   return (
     <Typography
@@ -91,16 +93,23 @@ const mdTheme = createTheme();
 interface Props {
   children: JSX.Element;
   arrayOfApps: any[];
+  isAuthenticated: Boolean;
 }
 export const DashboardContent: React.FC<Props> = ({
   children,
   arrayOfApps,
+  isAuthenticated,
 }) => {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
