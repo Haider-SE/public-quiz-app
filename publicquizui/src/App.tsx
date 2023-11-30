@@ -5,8 +5,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import Users from "./Components/Admin/Users";
 import MainPage from "./Components/Admin/MainPage";
-import LogoutIcon from "@mui/icons-material/Logout";
 import Login from "./Components/Login/Login";
+import { useSelector } from 'react-redux';
 const arrayOfApps = [
   {
     path: "/home",
@@ -22,6 +22,8 @@ const arrayOfApps = [
   },
 ];
 function App() {
+  const isAuthenticated = useSelector((state: any) => state.login.responseData);
+  debugger;
   return (
     <BrowserRouter>
       <Routes>
@@ -30,7 +32,7 @@ function App() {
             <Route
               path={i.path}
               element={
-                <DashboardContent arrayOfApps={arrayOfApps}>
+                <DashboardContent arrayOfApps={arrayOfApps} isAuthenticated={isAuthenticated}>
                   {i.element}
                 </DashboardContent>
               }

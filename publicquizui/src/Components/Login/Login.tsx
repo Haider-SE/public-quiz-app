@@ -43,7 +43,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const responseData = useSelector((state: RootState) => state.login.responseData);
   const [data, setData] = React.useState({
-    userName: "",
+    email: "",
     password: "",
   });
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -51,9 +51,8 @@ export default function SignIn() {
     dispatch(login(data));
   };
   React.useEffect(() => {
-    debugger;
     if(responseData){
-      navigate('/Login')
+      navigate('/home')
     }
   },[responseData])
 
@@ -85,6 +84,9 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => {
+                setData({ ...data, email: e.target.value });
+              }}
             />
             <TextField
               margin="normal"
@@ -95,6 +97,9 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => {
+                setData({ ...data, password: e.target.value });
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -13,14 +13,14 @@ const initialState: LoginState = {
   responseData: null,
 };
 interface Data {
-  userName: string;
+  email: string;
   password: string;
 }
 export const login = createAsyncThunk(
   "login/login",
   async (payload: Data) => {
     try {
-      const response = await authApi.post("/loginDigitalProgrammer", payload);
+      const response = await authApi.post("/login-teacher", payload);
       // Save the JWT token in local storage or session storage for persistent login
       localStorage.setItem("token", response.data.token);
       return response.data;
